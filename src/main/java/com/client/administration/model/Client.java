@@ -34,10 +34,6 @@ public class Client {
     @Length(min = 2)
     private String lastName;
 
-    @NotEmpty(message = "Please fill in a Password")
-    @Length(min = 8, message = "Password should be min 8 characters!")
-    private String password;
-
     @NotEmpty(message = "Please fill in the Email")
     @Pattern(regexp = ".+@.+\\..+", message = "Wrong email!")
     private String email;
