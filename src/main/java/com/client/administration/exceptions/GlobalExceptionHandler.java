@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
         ConstraintViolationException e) {
         ValidationErrorResponse errors = new ValidationErrorResponse();
         for (ConstraintViolation violation : e.getConstraintViolations()) {
-            errors.getViolations().add(new Violation(violation.getPropertyPath().toString(), violation.getMessage()));
+            errors.getViolations().add(Violation.builder().dateStamp(new Date().toString()).field(violation.getPropertyPath().toString()).message(violation.getMessage()).build());
         }
         return errors;
     }
@@ -33,7 +33,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<?> globalExceptionHandler(Exception ex, WebRequest request) {
         ValidationErrorResponse errors = new ValidationErrorResponse();
-        errors.getViolations().add(new Violation(new Date().toString(), ex.getMessage()));
+        errors.getViolations().add(Violation.builder().dateStamp(new Date().toString()).message(ex.getMessage()).build());
         return new ResponseEntity<>(errors, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
