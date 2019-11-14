@@ -36,7 +36,7 @@ public class Client {
     private String lastName;
 
     @NotEmpty(message = "Please fill in the Email")
-    @Email
+    @Email(message = "Not a well-formed email address")
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL, targetEntity = Address.class)

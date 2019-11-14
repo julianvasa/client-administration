@@ -1,5 +1,7 @@
 package com.client.administration.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,8 +15,10 @@ import javax.persistence.*;
  */
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "addresses")
+@Builder
 public class Address {
 
     @Id
@@ -27,6 +31,6 @@ public class Address {
 
     private String country = "";
 
-    private String zip = "";
+    private int zip;
 
 }
