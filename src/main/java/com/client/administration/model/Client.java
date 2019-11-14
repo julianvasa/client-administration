@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
@@ -35,7 +36,7 @@ public class Client {
     private String lastName;
 
     @NotEmpty(message = "Please fill in the Email")
-    @Pattern(regexp = ".+@.+\\..+", message = "Wrong email!")
+    @Email
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL, targetEntity = Address.class)
