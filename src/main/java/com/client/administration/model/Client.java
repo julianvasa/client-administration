@@ -47,7 +47,7 @@ public class Client {
 
     private boolean deactivated = false;
 
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = Address.class)
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = Address.class)
     @JoinColumn(name = "address")
     private Address address;
 
