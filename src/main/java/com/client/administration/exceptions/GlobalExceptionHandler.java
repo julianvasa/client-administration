@@ -1,5 +1,7 @@
 package com.client.administration.exceptions;
 
+import com.client.administration.exceptions.dto.ValidationErrorResponse;
+import com.client.administration.exceptions.dto.Violation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -34,6 +36,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<?> globalExceptionHandler(Exception ex, WebRequest request) {
         ValidationErrorResponse errors = new ValidationErrorResponse();
         errors.getViolations().add(Violation.builder().dateStamp(new Date().toString()).message(ex.getMessage()).build());
+        ex.printStackTrace();
         return new ResponseEntity<>(errors, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

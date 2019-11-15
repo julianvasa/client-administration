@@ -1,4 +1,4 @@
-package com.client.administration.exceptions;
+package com.client.administration.exceptions.dto;
 
 import lombok.Getter;
 import lombok.Setter;

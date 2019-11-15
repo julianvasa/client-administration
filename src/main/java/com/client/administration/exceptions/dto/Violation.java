@@ -1,4 +1,4 @@
-package com.client.administration.exceptions;
+package com.client.administration.exceptions.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
@@ -9,7 +9,7 @@ import lombok.Getter;
 @Getter
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @Builder
-class Violation {
+public class Violation {
     private final String dateStamp;
     private final String field;
     private final String message;

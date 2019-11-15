@@ -1,7 +1,9 @@
 package com.client.administration.model;
 
+import com.client.administration.audit.Audit;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -19,6 +21,7 @@ import javax.validation.constraints.Pattern;
 @NoArgsConstructor
 @Entity
 @Table(name = "clients")
+@Audited
 public class Client {
 
     @Id
@@ -39,10 +42,15 @@ public class Client {
     @Email(message = "Not a well-formed email address")
     private String email;
 
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = Address.class)
-    @JoinColumn(name="address")
-    private Address address;
-
     @Pattern(regexp = "^[0-9+]*$", message = "Phone should contains only numbers and/or +!")
     private String phone = "";
+
+    private boolean deactivated = false;
+
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = Address.class)
+    @JoinColumn(name = "address")
+    private Address address;
+
+    @Embedded
+    private Audit audit = new Audit();
 }
