@@ -12,7 +12,7 @@ import javax.persistence.*;
  * Client entity to persist data to the database
  * Field validation are defined in this class
  *
- * @author Julian Vasa
+ * @author julianvasa
  */
 @Data
 @NoArgsConstructor

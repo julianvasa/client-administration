@@ -21,7 +21,7 @@ import java.util.Date;
  * These methods define what is HTTP status and the response that will be sent to the client performing the request
  */
 @ControllerAdvice
-public class GlobalExceptionHandler {
+class GlobalExceptionHandler {
 
     /* Exception handler for bean validation exceptions */
     @ExceptionHandler(ConstraintViolationException.class)

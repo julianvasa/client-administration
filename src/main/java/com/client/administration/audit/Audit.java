@@ -6,6 +6,11 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+/**
+ * Audit class defines the audit fields that need to be updated before a new record is created, an update or delete record
+ *
+ * @author julianvasa
+ */
 @Embeddable
 @Getter
 @Setter
