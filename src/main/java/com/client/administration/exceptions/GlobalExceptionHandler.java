@@ -15,6 +15,11 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import java.util.Date;
 
+
+/**
+ * Global exception handler class (advice, AOP) which defined the method handlers that will handle specific exceptions
+ * These methods define what is HTTP status and the response that will be sent to the client performing the request
+ */
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -31,7 +36,7 @@ public class GlobalExceptionHandler {
         return errors;
     }
 
-    /* Exception handler for bean validation exceptions */
+    /* Exception handler in case of not found resource exception */
     @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
