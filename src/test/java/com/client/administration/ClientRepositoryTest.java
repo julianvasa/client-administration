@@ -26,11 +26,11 @@ public class ClientRepositoryTest {
     public void persistUser(){
         Address ADDRESS = Address.builder().street("Street").city("City").country("Country").zip(1000).build();
 
-        Client client = new Client();
-        client.setFirstName("FirstName");
-        client.setLastName("LastName");
-        client.setEmail("user@test.com");
-        client.setAddress(ADDRESS);
+        Client client = Client.builder()
+        .firstName("FirstName")
+        .lastName("LastName")
+        .email("user@test.com")
+        .address(ADDRESS).build();
 
         testEntityManager.persist(client);
         assertNotNull(clientRepository.findById(1L));

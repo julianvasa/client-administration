@@ -1,6 +1,8 @@
 package com.client.administration.model;
 
 import com.client.administration.audit.Audit;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.envers.Audited;
@@ -19,9 +21,11 @@ import javax.validation.constraints.Pattern;
  */
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "clients")
 @Audited
+@Builder
 public class Client {
 
     @Id

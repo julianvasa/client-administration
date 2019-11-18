@@ -40,11 +40,12 @@ public class ClientTest {
 
     @Test
     public void createNewUser_thenNoErrors() {
-        Client client = new Client();
-        client.setFirstName(FIRST_NAME);
-        client.setLastName(LAST_NAME);
-        client.setEmail(EMAIL);
-        client.setAddress(ADDRESS);
+
+        Client client = Client.builder()
+        .firstName(FIRST_NAME)
+        .lastName(LAST_NAME)
+        .email(EMAIL)
+        .address(ADDRESS).build();
 
         Optional<ConstraintViolation<Client>> violation = validator.validate(client).stream().findFirst();
         if (violation.isPresent()) {
@@ -54,11 +55,12 @@ public class ClientTest {
 
     @Test
     public void whenCreatingWithNameTooShort_thenValidationErrorsAreThrown() {
-        Client client = new Client();
-        client.setFirstName(SHORT_FIRST_NAME);
-        client.setLastName(LAST_NAME);
-        client.setEmail(EMAIL);
-        client.setAddress(ADDRESS);
+
+        Client client = Client.builder()
+            .firstName(SHORT_FIRST_NAME)
+            .lastName(LAST_NAME)
+            .email(EMAIL)
+            .address(ADDRESS).build();
 
         Optional<ConstraintViolation<Client>> violation = validator.validate(client).stream().findFirst();
         assertTrue(violation.isPresent());
@@ -67,10 +69,11 @@ public class ClientTest {
 
     @Test
     public void whenCreatingWithoutEmail_thenValidationErrorsAreThrown() {
-        Client client = new Client();
-        client.setFirstName(FIRST_NAME);
-        client.setLastName(LAST_NAME);
-        client.setAddress(ADDRESS);
+
+        Client client = Client.builder()
+            .firstName(FIRST_NAME)
+            .lastName(LAST_NAME)
+            .address(ADDRESS).build();
 
         Optional<ConstraintViolation<Client>> violation = validator.validate(client).stream().findFirst();
         assertTrue(violation.isPresent());
@@ -80,9 +83,11 @@ public class ClientTest {
 
     @Test
     public void whenCreatingWitoutLastName_thenValidationErrorsAreThrown() {
-        Client client = new Client();
-        client.setFirstName(FIRST_NAME);
-        client.setEmail(EMAIL);
+
+        Client client = Client.builder()
+            .firstName(FIRST_NAME)
+            .email(EMAIL)
+            .build();
 
         Optional<ConstraintViolation<Client>> violation = validator.validate(client).stream().findFirst();
         assertTrue(violation.isPresent());
@@ -92,10 +97,11 @@ public class ClientTest {
 
     @Test
     public void whenCreatingWitoutFirstName_thenValidationErrorsAreThrown() {
-        Client client = new Client();
-        client.setLastName(LAST_NAME);
-        client.setEmail(EMAIL);
-        client.setAddress(ADDRESS);
+
+        Client client = Client.builder()
+            .lastName(LAST_NAME)
+            .email(EMAIL)
+            .address(ADDRESS).build();
 
         Optional<ConstraintViolation<Client>> violation = validator.validate(client).stream().findFirst();
         assertTrue(violation.isPresent());
@@ -104,11 +110,12 @@ public class ClientTest {
 
     @Test
     public void whenCreatingFirstNameWithNumbers_thenValidationErrorsAreThrown() {
-        Client client = new Client();
-        client.setFirstName(WRONG_FIRST_NAME);
-        client.setLastName(LAST_NAME);
-        client.setEmail(EMAIL);
-        client.setAddress(ADDRESS);
+
+        Client client = Client.builder()
+            .firstName(WRONG_FIRST_NAME)
+            .lastName(LAST_NAME)
+            .email(EMAIL)
+            .address(ADDRESS).build();
 
         Optional<ConstraintViolation<Client>> violation = validator.validate(client).stream().findFirst();
         assertTrue(violation.isPresent());
@@ -116,11 +123,12 @@ public class ClientTest {
     }
     @Test
     public void whenCreatingLastNameWithNumbers_thenValidationErrorsAreThrown() {
-        Client client = new Client();
-        client.setFirstName(FIRST_NAME);
-        client.setLastName(WRONG_LAST_NAME);
-        client.setEmail(EMAIL);
-        client.setAddress(ADDRESS);
+
+        Client client = Client.builder()
+            .firstName(FIRST_NAME)
+            .lastName(WRONG_LAST_NAME)
+            .email(EMAIL)
+            .address(ADDRESS).build();
 
         Optional<ConstraintViolation<Client>> violation = validator.validate(client).stream().findFirst();
         assertTrue(violation.isPresent());
@@ -129,12 +137,14 @@ public class ClientTest {
 
     @Test
     public void whenCreatingEmailNotCorrect_thenValidationErrorsAreThrown() {
-        Client client = new Client();
-        client.setFirstName(FIRST_NAME);
-        client.setLastName(LAST_NAME);
-        client.setEmail(WRONG_EMAIL_ADDRESS);
-        client.setAddress(ADDRESS);
-        client.setPhone(PHONE);
+
+        Client client = Client.builder()
+            .firstName(FIRST_NAME)
+            .lastName(LAST_NAME)
+            .email(WRONG_EMAIL_ADDRESS)
+            .address(ADDRESS)
+            .phone(PHONE)
+            .build();
 
         Optional<ConstraintViolation<Client>> violation = validator.validate(client).stream().findFirst();
         assertTrue(violation.isPresent());
@@ -143,12 +153,14 @@ public class ClientTest {
 
     @Test
     public void whenCreatingPhoneNotCorrect_thenValidationErrorsAreThrown() {
-        Client client = new Client();
-        client.setFirstName(FIRST_NAME);
-        client.setLastName(LAST_NAME);
-        client.setEmail(EMAIL);
-        client.setAddress(ADDRESS);
-        client.setPhone(WRONG_PHONE);
+
+        Client client = Client.builder()
+            .firstName(FIRST_NAME)
+            .lastName(LAST_NAME)
+            .email(EMAIL)
+            .address(ADDRESS)
+            .phone(WRONG_PHONE)
+            .build();
 
         Optional<ConstraintViolation<Client>> violation = validator.validate(client).stream().findFirst();
         assertTrue(violation.isPresent());
@@ -157,12 +169,14 @@ public class ClientTest {
 
     @Test
     public void whenCreatingPhoneCorrect_thenNoValidationErrorsAreThrown() {
-        Client client = new Client();
-        client.setFirstName(FIRST_NAME);
-        client.setLastName(LAST_NAME);
-        client.setEmail(EMAIL);
-        client.setAddress(ADDRESS);
-        client.setPhone(PHONE);
+
+        Client client = Client.builder()
+            .firstName(FIRST_NAME)
+            .lastName(LAST_NAME)
+            .email(EMAIL)
+            .address(ADDRESS)
+            .phone(PHONE)
+            .build();
 
         Optional<ConstraintViolation<Client>> violation = validator.validate(client).stream().findFirst();
         if (violation.isPresent()) {
