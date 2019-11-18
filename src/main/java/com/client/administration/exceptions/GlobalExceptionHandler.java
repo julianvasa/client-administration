@@ -2,6 +2,7 @@ package com.client.administration.exceptions;
 
 import com.client.administration.exceptions.dto.ValidationErrorResponse;
 import com.client.administration.exceptions.dto.Violation;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -30,7 +31,19 @@ public class GlobalExceptionHandler {
         return errors;
     }
 
-    /* Exception handler for all other exceptions*/
+    /* Exception handler for bean validation exceptions */
+    @ExceptionHandler(ResourceNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseBody
+    ValidationErrorResponse onResourceNotFound(
+        ResourceNotFoundException ex) {
+        ValidationErrorResponse errors = new ValidationErrorResponse();
+        errors.getViolations().add(Violation.builder().dateStamp(new Date().toString()).message(ex.getMessage()).build());
+        return errors;
+    }
+
+
+    /* Exception handler for all other other exceptions*/
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<?> globalExceptionHandler(Exception ex, WebRequest request) {
